@@ -44,4 +44,10 @@ public class CompanyController {
         companies.add(company);
         return ResponseEntity.status(HttpStatus.CREATED).body("create success");
     }
+    @PutMapping("/companies/{index}")
+    public ResponseEntity updateCompany(@PathVariable int index){
+        Company company=companies.get(index);
+        company.setEmployeesNumber(1);
+        return ResponseEntity.ok(company);
+    }
 }
