@@ -12,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -57,7 +58,17 @@ public class CompanyControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(content().json("[{\"companyName\":\"OOCL\",\"employeesNumber\":2,\"employees\":[{\"id\":4,\"name\":\"alibaba1\",\"age\":20,\"gender\":\"male\"},{\"id\":11,\"name\":\"tengxun2\",\"age\":19,\"gender\":\"female\"}]}]"));
+                .andExpect(content().json("[{\"companyName\":\"OOCL\",\"employeesNumber\":2,\"employees\":[{\"id\":4,\"name\":\"alibaba1\",\"age\":20,\"gender\":\"male\"},{\"id\":11,\"name\":\"tengxun2\",\"age\":19,\"gender\":\"female\",\"salary\":\"10000\"}]}]"));
+
+    }
+    @Test
+    public void should_return_success_when_create_company_success() throws Exception {
+        mockMvc.perform(post("/companies").contentType("application/json;charset=UTF-8")
+                .content("{}"))
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType("text/plain;charset=UTF-8"))
+                .andExpect(content().string("create success"));
 
     }
 }
