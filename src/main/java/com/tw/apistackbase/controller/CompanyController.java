@@ -19,9 +19,14 @@ public class CompanyController {
         return ResponseEntity.ok(companies);
     }
     @GetMapping("/companies/{index}")
-    public ResponseEntity getCompaniesByIndex(@PathVariable int index){
+    public ResponseEntity getCompanyByIndex(@PathVariable int index){
 
         return ResponseEntity.ok(companies.get(index));
+    }
+    @GetMapping("/companies/{index}/employees")
+    public ResponseEntity getEmployeesByCompanyIndex(@PathVariable int index){
+
+        return ResponseEntity.ok(companies.get(index).getEmployees());
     }
 
 }

@@ -42,4 +42,13 @@ public class CompanyControllerTest {
                 .andExpect(content().json("{\"companyName\":\"OOCL\",\"employeesNumber\":2,\"employees\":[{\"id\":4,\"name\":\"alibaba1\",\"age\":20,\"gender\":\"male\"},{\"id\":11,\"name\":\"tengxun2\",\"age\":19,\"gender\":\"female\"}]}"));
 
     }
+    @Test
+    public void should_return_employees_when_get_employeeList_of_a_company_by_index() throws Exception {
+        mockMvc.perform(get("/companies/0/employees"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(content().json("[{\"id\":4,\"name\":\"alibaba1\",\"age\":20,\"gender\":\"male\"},{\"id\":11,\"name\":\"tengxun2\",\"age\":19,\"gender\":\"female\"}]"));
+
+    }
 }
