@@ -37,7 +37,7 @@ public class CompanyController {
                 .filter(company -> companies.indexOf(company)<(page*pageSize)&&
                 companies.indexOf(company)>=((page-1)*pageSize))
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(companies.get(page*pageSize).getEmployees());
+        return ResponseEntity.ok(companies1);
     }
     @PostMapping("/companies")
     public ResponseEntity createCompany(@RequestBody Company company){
