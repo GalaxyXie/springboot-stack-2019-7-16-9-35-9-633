@@ -79,5 +79,11 @@ public class CompanyControllerTest {
                 .andExpect(content().json("{\"companyName\":\"OOCL\",\"employeesNumber\":1,\"employees\":[{\"id\":4,\"name\":\"alibaba1\",\"age\":20,\"gender\":\"male\"},{\"id\":11,\"name\":\"tengxun2\",\"age\":19,\"gender\":\"female\",\"salary\":7000}]}"));
 
     }
+    @Test
+    public void should_return_status_when_after_delete_company() throws Exception {
+        mockMvc.perform(delete("/companies/0").contentType("application/json;charset=UTF-8"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 
 }
