@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class CompanyController {
@@ -27,6 +28,15 @@ public class CompanyController {
     public ResponseEntity getEmployeesByCompanyIndex(@PathVariable int index){
 
         return ResponseEntity.ok(companies.get(index).getEmployees());
+    }
+    @GetMapping("/companies?page={page}&pageSize={pageSize}")
+    public ResponseEntity getCompanyByPageAndPageSize(@PathVariable int page,@PathVariable int pageSize){
+        List <Company>companies1=new ArrayList<>();
+        companies1=companies.stream()
+                .filter(company -> companies.indexOf(company)<(page*pageSize)&&
+                companies.indexOf(company)>=((page-1)*pageSize))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(companies.get(page*pageSize).getEmployees());
     }
 
 }
