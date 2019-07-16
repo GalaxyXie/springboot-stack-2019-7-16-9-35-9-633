@@ -57,7 +57,7 @@ public class CompanyControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(content().json("[{\"companyName\":\"OOCL\",\"employeesNumber\":2,\"employees\":[{\"id\":4,\"name\":\"alibaba1\",\"age\":20,\"gender\":\"male\"},{\"id\":11,\"name\":\"tengxun2\",\"age\":19,\"gender\":\"female\",\"salary\":\"7000\"}]}]"));
+                .andExpect(content().json("[{\"companyName\":\"OOCL\",\"employeesNumber\":2,\"employees\":[{\"id\":4,\"name\":\"alibaba1\",\"age\":20,\"gender\":\"male\"},{\"id\":11,\"name\":\"tengxun2\",\"age\":19,\"gender\":\"female\",\"salary\":7000}]}]"));
 
     }
     @Test

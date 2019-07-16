@@ -50,4 +50,8 @@ public class CompanyController {
         company.setEmployeesNumber(1);
         return ResponseEntity.ok(company);
     }
+    @DeleteMapping("/companies/{index}")
+    public void DeleteCompany(@PathVariable int index){
+        companies.remove(index);
+    }
 }
